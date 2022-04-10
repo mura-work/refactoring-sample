@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { getInvoice } from '../../services/session1/invoice'
+import { getInvoice } from '../../services/session1/statement'
 
 export default {
   name: 'invoice-page',
