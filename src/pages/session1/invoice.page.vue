@@ -1,11 +1,12 @@
 <template>
-  <div class="invoice-content">
-    {{invoice}}
+  <div class="invoice-content" id="invoice-template">
+    {{ invoice }}
   </div>
 </template>
 
 <script>
 import { getInvoice } from '../../services/session1/statement'
+// import Vue from 'vue';
 
 export default {
   name: 'invoice-page',
@@ -39,6 +40,12 @@ export default {
   methods: {
     displayInvoice() {
       this.invoice = getInvoice(this.invoices, this.plays)
+      // new Vue({
+      //   el: '#invoice-template',
+      //   render: (createElement) => {
+      //     return createElement(invoiceTemplate)
+      //   },
+      // })
     }
   },
   mounted() {
@@ -50,6 +57,6 @@ export default {
 <style lang="scss" scoped>
 .invoice-content {
   width: 100%;
-  white-space: pre;
+  // white-space: pre;
 }
 </style>
