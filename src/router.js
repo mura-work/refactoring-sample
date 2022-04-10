@@ -1,14 +1,23 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Router from 'vue-router';
+import InvoicePage from './pages/session1/invoice.page.vue'
+import Home from './pages/Home.page.vue'
 
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
-const routes = [];
-
-const router = new VueRouter({
-    routes,
-    mode: 'history'
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/invoice',
+      name: 'invoice-page',
+      component: InvoicePage,
+    },
+  ]
 });
-
-export default router;
