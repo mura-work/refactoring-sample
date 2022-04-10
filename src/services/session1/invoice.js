@@ -1,21 +1,35 @@
 /**
+ * 請求書フォーマットの取得
+ * @param {*} number
+ * @return {*}
+ */
+function getStatementFormat(number) {
+  return new Intl.NumberFormat("en-US",
+    { style: "currency", currency: "USD",
+      minimumFractionDigits: 2 }).format(number / 100);
+}
+
+/**
  * 請求書印刷の関数
  * @param {*} invoice 請求
  * @param {*} plays 演劇のデータ
  * @return {*}
  */
 function statement(invoice, plays) {
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  const format = new Intl.NumberFormat("en-US",
-    { style: "currency", currency: "USD",
-      minimumFractionDigits: 2 }).format;
-
+  /**
+   * 劇タイプの取得
+   * @param {*} perf
+   * @return {*}
+   */
   const getPlayType = (perf) => {
     return plays[perf.playID].type
   }
 
+  /**
+   * type別の金額計算
+   * @param {*} perf
+   * @return {*}
+   */
   const amountFor = (perf) => {
     let result = 0
     switch (getPlayType(perf)) {
@@ -38,6 +52,11 @@ function statement(invoice, plays) {
     return result
   }
 
+  /**
+   * ボリューム特典ポイントの集計
+   * @param {*} perf
+   * @return {*}
+   */
   const volumeCreditsFor = (perf) => {
     let result = 0;
     result += Math.max(perf.audience - 30, 0);
@@ -45,13 +64,37 @@ function statement(invoice, plays) {
     return result
   }
 
-  for (let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf)
-    result += `  ${getPlayType(perf)}: ${format(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
-    totalAmount += amountFor(perf);
+  /**
+   * ボリューム特典ポイント集計のループを切り出す
+   * @return {*}
+   */
+  const totalVolumeCredits = () => {
+    let volumeCredits = 0;
+    for (let perf of invoice.performances) {
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
   }
-  result += `Amount owed is ${format(totalAmount / 100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
+
+  /**
+   * 合計金額集計のループを切り出す
+   * @return {*}
+   */
+  const totalAmount = () => {
+    let result = 0;
+    for (let perf of invoice.performances) {
+      result += amountFor(perf);
+    }
+    return result
+  }
+
+  let result = `Statement for ${invoice.customer}\n`;
+  for (let perf of invoice.performances) {
+    result += `  ${getPlayType(perf)}: ${getStatementFormat(amountFor(perf))} (${perf.audience} seats)\n`;
+  }
+
+  result += `Amount owed is ${getStatementFormat(totalAmount())}\n`;
+  result += `You earned ${totalVolumeCredits()} credits\n`;
   return result;
 }
 
