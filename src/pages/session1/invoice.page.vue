@@ -1,15 +1,19 @@
 <template>
   <div class="invoice-content" id="invoice-template">
-    {{ invoice }}
+    <invoice-template :invoiceData="invoice" />
   </div>
 </template>
 
 <script>
 import { getInvoice } from '../../services/session1/statement'
-// import Vue from 'vue';
+import InvoiceTemplate from '../../components/invoice-template.vue'
 
 export default {
+  components: { InvoiceTemplate },
   name: 'invoice-page',
+  template: {
+    InvoiceTemplate,
+  },
   data: () => ({
     plays: {
       "hamlet": {"name": "Hamlet", "type": "tragedy"},
@@ -35,17 +39,11 @@ export default {
         ]
       }
     ],
-    invoice: '',
+    invoice: {},
   }),
   methods: {
     displayInvoice() {
       this.invoice = getInvoice(this.invoices, this.plays)
-      // new Vue({
-      //   el: '#invoice-template',
-      //   render: (createElement) => {
-      //     return createElement(invoiceTemplate)
-      //   },
-      // })
     }
   },
   mounted() {
