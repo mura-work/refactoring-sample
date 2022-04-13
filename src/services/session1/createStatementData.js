@@ -84,6 +84,5 @@ export function createStatementData(invoice, plays) {
   result.performances = invoice.performances.map(enrichPerformance);
   result.totalAmount = totalAmount(result)
   result.totalVolumeCredits = totalVolumeCredits(result)
-  console.log(result)
   return result
 }
