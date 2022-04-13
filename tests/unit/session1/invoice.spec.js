@@ -1,4 +1,4 @@
-import { statement } from '../../../src/services/session1/invoice'
+import { statement } from '../../../src/services/session1/statement'
 
 describe('confirm performance amount', () => {
   const plays = {
