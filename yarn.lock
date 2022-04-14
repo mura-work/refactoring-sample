@@ -942,13 +942,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@fingerprintjs/fingerprintjs@^3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs/-/fingerprintjs-3.3.3.tgz#ead445032c92a79d5f585953019402ed223edc7d"
-  integrity sha512-HH6KqZnopF3NIXypYG4f2qxoSRmGCSzp81wJMfWjSTtvsX3cAg12RFJcm+a6Az3XadcZUrXKW3p5Dv0wyCUeuA==
-  dependencies:
-    tslib "^2.0.1"
-
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@hapi/address/-/address-2.1.4.tgz"
@@ -9995,11 +9988,6 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@^2.0.1:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
-  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tty-browserify@0.0.0:
   version "0.0.0"
