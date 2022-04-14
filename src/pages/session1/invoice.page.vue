@@ -44,7 +44,7 @@ export default {
   methods: {
     displayInvoice() {
       this.invoice = getInvoice(this.invoices, this.plays)
-    }
+    },
   },
   mounted() {
     this.displayInvoice()
