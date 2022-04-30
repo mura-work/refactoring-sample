@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import InvoicePage from './pages/session1/invoice.page.vue'
 import Home from './pages/Home.page.vue'
-
+import Graphql from './pages/Graphql.page.vue'
 
 Vue.use(Router);
 
@@ -18,6 +18,11 @@ export default new Router({
       path: '/invoice',
       name: 'invoice-page',
       component: InvoicePage,
+    },
+    {
+      path: '/graphql',
+      name: 'graphql',
+      component: Graphql,
     },
   ]
 });
